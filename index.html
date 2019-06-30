@@ -1,0 +1,322 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta  http-equiv="Content-Type" content="text/html; charset=utf-8" />   
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0" />  
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+	<!-- TODO: Clean all these imports. Some day -->
+    <script language="javascript" src="js/jquery.min.js"></script>
+	<script language="javascript" src="js/bootstrap.min.js"></script>
+	<script language="javascript" src="js/jquery.mobile.touch.min.js"></script>
+	<script language="javascript" src="js/basic.js"></script>
+	<script language="javascript" src="js/three.min.js"></script>
+	<script language="javascript" src="js/stats.min.js"></script>
+	<script language="javascript" src="js/dat.gui.min.js"></script>
+	<script language="javascript" src="js/OrbitControls.js"></script>
+	<script language="javascript" src="js/PLYLoader.js"></script>
+	<script language="javascript" src="js/ImageUtils.js"></script>
+	<script language="javascript" src="js/popcorn-complete.js"></script>
+	<script language="javascript" src="js/tween.min.js"></script>
+	<!-- just for draggable -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+	<title>VERA 3D Event Reconstruction Interface by Junwei Liang</title>
+</head>
+<body>
+
+<style type='text/css'>
+	body{
+		font-family:"Roboto", sans-serif,arial,"Microsoft YaHei",Helvetica;
+		font-size:15px;
+	}
+	/*
+		div.content:
+			provide the content div in the middle
+	*/
+	body div.content{
+		/*width:1280px;*/
+		width:1000px;
+		margin:0 auto;
+		line-height:30px;
+	}
+	/*
+		header wrapper
+	*/
+	body div.header{
+		background-color:#2196F3;
+	}
+	body div.header > div.content{
+		padding:10px;
+	}
+	/*
+		footer1
+	*/
+	body div.footer1{
+		margin-top:30px;
+		background-color:#64B5F6;
+	}
+	body div.footer1 > div.content{
+		position:relative;
+	}
+	body div.footer1 > div.content > div.logos{
+		width:650px;
+		position:absolute;
+		top:0;
+		right:0;
+		text-align:right;
+		padding:30px 0;
+	}
+	body div.footer1 > div.content > div.logos > img.logo{
+		max-height:100px;
+		max-width:300px;
+		margin-left:50px;
+		margin-right:0;
+	}
+	/*
+		footer2
+	*/
+	body div.footer2{
+		background-color:#2196F3;
+	}
+	body div.footer > div.content{
+		padding:10px;
+	}
+	body div.footer1 > div.content{
+		padding:20px;
+		line-height:40px;
+		font-size:1.2em;
+	}
+	/*
+		utils css
+	*/
+	div.white-text{
+		color:white;
+	}
+	div.content > div.title{
+		padding:30px 0;
+		border-top:1px silver solid;
+		margin-top:30px;
+		font-size:2em;
+		font-weight:700;
+	}
+	body a{
+		text-decoration:none;
+		color:inherit;
+	}
+	div.content ul{
+		list-style: disc inside none;
+	}
+	div.content ol{
+		list-style: decimal inside none;
+	}
+	div.content li{
+		line-height:30px;
+		padding-bottom:5px;
+	}
+	div.content div.float-right{
+		float:right;
+	}
+</style>
+<!-- memexqa -->
+<style type="text/css">
+div.header > div.nav.content{
+	height:50px;
+	padding:0;
+}
+div.header > div.nav > a.block{
+	float:left;
+	width:100px;
+	padding:10px;
+	text-align:center;
+	color:white;
+	cursor:pointer;
+	text-decoration:none;
+	display:block;
+	color:white;
+	font-weight:bold;
+}
+div.header > div.nav > a.block:hover{
+	background-color:#64B5F6;
+}
+
+</style>
+<style type="text/css">
+div.content.main{
+	padding:50px 0;
+	padding-bottom:10px;
+	min-height:1000px;
+}
+div.content > div.logos{
+	padding:30px 0;
+	text-align:center;
+}
+div.content > div.logos > img.logo{
+	max-height:100px;
+	max-width:350px;
+	margin-right:50px;
+}
+div.content.main > div.mainTitle{
+	text-align:center;
+	line-height:80px;
+	padding:20px 10px;
+	font-weight:bold;
+	font-size:2.3em;
+}
+div.content.main > div.authors, div.content.main > div.publication{		
+	font-size:1.3em;
+	color:gray;
+	text-align:center;
+}
+div.content.main > div.institutions{
+	font-weight:bold;
+	font-size:1.3em;
+	color:gray;
+	text-align:center;
+}
+div.content.main > div.links{
+	text-align:center;
+	padding:30px 0;
+}
+
+div.log > ul > li > span.title,div.log > ul > li > div.time{
+	font-weight:bold;
+	font-size:1.1em;
+}
+div.log > ul > li > div.info{
+	padding-left:20px;
+	word-wrap:break-word;
+}
+div.dataset > ul > li > span.title,div.dataset > ul > li > div.time{
+	font-weight:bold;
+	font-size:1.1em;
+}
+div.dataset > ul > li > div.info{
+	padding-left:20px;
+	word-wrap:break-word;
+}
+div.content div.caption{
+	text-align:center;
+	font-size:1.2em;
+	font-weight:bold;
+}
+div.content div.figure{
+	padding:10px 0;
+}
+div.content div.subTitle{
+	padding:10px;
+	padding-left:50px;
+	font-size:1.5em;
+	font-weight:bold;
+	color:#A31F34;
+}
+div.guide_text{
+	padding:5px;
+	padding-left:50px;
+	font-size:1.2em;
+}
+div.content ol.term > li{
+	padding-left:50px;
+	color:red;
+}
+div.content div.intro{
+	padding:20px 0;
+	font-size:1.2em;
+	font-weight:400;
+}
+</style>
+
+<div class="header">
+	<div class="content white-text nav">
+		<a class="block" href="#">VERA</a>
+	</div>
+</div>
+
+<div class="content main">
+	<div class="mainTitle">The Video Event Reconstruction and Analysis (VERA) System - 3D Event Reconstruction</div>
+	<div class="authors">
+		<a style="text-decoration:none" href="https://www.cs.cmu.edu/~junweil/">Junwei Liang</a>,
+		<a href="https://www.cs.cmu.edu/~alex/">Alexander Hauptmann</a>
+	</div>
+	<div class="institutions">
+		Carnegie Mellon University
+	</div>
+	<div class="links" style="font-weight:bold">
+		<a class="btn btn-info" href="https://arxiv.org/abs/1905.13313">Technical Report</a>
+		&nbsp;&nbsp;&nbsp;
+		<a class="btn btn-info" href="#bib">BibTex</a>
+		&nbsp;&nbsp;&nbsp;
+		<a class="btn btn-info" href="https://github.com/JunweiLiang/VERA_3D_Reconstruction">Source Code</a>
+	</div>
+	<div class="intro" style="text-align:center;font-size:1.3em;line-height:50px;font-weight:bold;">
+		We introduce the VERA system, enabled by established machine learning techniques and physics models, that can show synchronized videos from social media that capture an event in 3D space.
+		<br/>
+		<img style="height:230px;margin-right:20px;"src="img/3D_Reconstruction.gif"></img>
+		<img style="height:230px;margin-right:0px;"src="img/Video_In_3D.gif"></img>
+		<br/>
+		We reconstruct the street in 3D and put the synchronized videos into the 3D space. 
+		<br/>
+		Live demo for Chrome (Warning, it may take up lots of RAM): <a href="3D_Reconstruction_1.html">Here</a> 
+	</div>
+	<div class="resources">
+		<ol style="font-size:1.2em;">
+			<li>For full technical details, please refer to our <a style="color:#49afcd" href="https://arxiv.org/abs/1905.13313">technical report</a>. Please report on Github if you find any detail missing in the report.</li>
+			<li>We have released the source code for web interface on <a style="color:#49afcd" href="https://github.com/JunweiLiang/VERA_3D_Reconstruction">Github</a>. We encourage researchers and engineers to help continue improving this system.</li>
+		</ol>
+		<div class="citations" style="font-size:1.2em;">
+			<a name="bib"></a>
+			If you find this system helpful to your project/report/research, please cite the following papers:
+			<textarea style="width:90%;height:480px;cursor: text;" disabled>@article{liang2019vera,
+  	title={Technical Report of the Video Event Reconstruction and Analysis (VERA) System - Shooter Localization, Models, Interface, and Beyond},
+  	author={Liang, Junwei and Aronson, Jay D. and Hauptmann, Alexander},
+  	journal={arXiv preprint arXiv:1905.13313},
+  	year={2019}
+}
+@inproceedings{liang2017synchronization,
+  title={Synchronization for multi-perspective videos in the wild},
+  author={Liang, Junwei and Huang, Poyao and Chen, Jia and Hauptmann, Alexander},
+  booktitle={2017 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  pages={1592--1596},
+  year={2017},
+  organization={IEEE}
+}
+@inproceedings{liang2017event,
+  title={An event reconstruction tool for conflict monitoring using social media},
+  author={Liang, Junwei and Fan, Desai and Lu, Han and Huang, Poyao and Chen, Jia and Jiang, Lu and Hauptmann, Alexander},
+  booktitle={Thirty-First AAAI Conference on Artificial Intelligence},
+  year={2017}
+}
+			</textarea>
+		</div>
+		<div class="intro" style="text-align:center;font-size:1.3em;line-height:50px;font-weight:bold;">
+			<img style="height:230px;margin-right:0px;"src="img/Video_In_3D_dataset2.gif"></img>
+			<br/>
+			Clean dataset example. <a href="3D_Reconstruction_2.html">Live Demo</a> 
+		</div>
+	</div>
+</div>
+<div class="content log">
+	<a name="log"></a>
+	<div class="title">Release Log</div>
+	<ul>
+		<li>
+			<span class="title"> [06/2019]: Code for web interface released.</span> 
+		</li>
+	</ul>
+</div>
+
+<div class="footer footer1">
+	<div class="content white-text">
+		<div class="logos">
+			<img class="logo" src="img/ltilogo.png"></img>
+		</div>
+		Informedia Lab, Carnegie Mellon University <br/>
+		School of Computer Science <br/>
+		Language Technologies Institute
+	</div>
+<div class="footer footer2">
+	<div class="content white-text">
+		Designed and created by <a href="https://cs.cmu.edu/~junweil">Junwei Liang</a> at CMU.
+	</div>
+</div>
+
+</body>
+</html>
