@@ -13,6 +13,22 @@ You can check find more information and try out the live 3D event reconstruction
 Also, try out our [shooter localization system](https://vera.cs.cmu.edu/).
 
 
+
+## Introduction
+We introduce the Video Event Reconstruction and Analysis (VERA) system, enabled by established machine learning techniques and physics models, that can show synchronized videos from social media that capture an event in 3D space.
+
+
+<div align="center">
+  <div style="">
+      <img src="img/3D_Reconstruction.gif" height="200px" />
+      <img src="img/Video_In_3D.gif" height="200px" />
+  </div>
+  <p style="font-weight:bold;font-size:1.2em;">
+  	<a href="https://vera.cs.cmu.edu/VERA_3D_Reconstruction/3D_Reconstruction_1.html" target="_blank">Live Demo 1</a> &nbsp; &nbsp;
+    <a href="https://vera.cs.cmu.edu/VERA_3D_Reconstruction/3D_Reconstruction_2.html" target="_blank">Live Demo 2</a>
+  </p>
+</div>
+
 If you find this system/code useful in your research/report then please cite
 
 ```
@@ -37,22 +53,6 @@ If you find this system/code useful in your research/report then please cite
   year={2017}
 }
 ```
-
-
-## Introduction
-We introduce the Video Event Reconstruction and Analysis (VERA) system, enabled by established machine learning techniques and physics models, that can show synchronized videos from social media that capture an event in 3D space.
-
-
-<div align="center">
-  <div style="">
-      <img src="img/3D_Reconstruction.gif" height="200px" />
-      <img src="img/Video_In_3D.gif" height="200px" />
-  </div>
-  <p style="font-weight:bold;font-size:1.2em;">
-  	<a href="https://vera.cs.cmu.edu/VERA_3D_Reconstruction/3D_Reconstruction_1.html" target="_blank">Live Demo 1</a> &nbsp; &nbsp;
-    <a href="https://vera.cs.cmu.edu/VERA_3D_Reconstruction/3D_Reconstruction_2.html" target="_blank">Live Demo 2</a>
-  </p>
-</div>
 
 You can check find more information and try out the live 3D event reconstruction demo at our [Project Page](https://vera.cs.cmu.edu/VERA_3D_Reconstruction).
 
