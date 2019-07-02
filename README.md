@@ -57,7 +57,7 @@ If you find this system/code useful in your research/report then please cite
 You can check find more information and try out the live 3D event reconstruction demo at our [Project Page](https://vera.cs.cmu.edu/VERA_3D_Reconstruction).
 
 ## Installation
-You will need to have a running server for the demo to run properly. You cannot just directly open the html file in Chrome according to [this](https://github.com/mrdoob/three.js/wiki/How-to-run-things-locally).
+You will need to have a running server for the demo to run properly. Put this repo under your server root and open Chrome to http://localhost/VERA_3D_Reconstruction. You cannot just directly open the html file in Chrome according to [this](https://github.com/mrdoob/three.js/wiki/How-to-run-things-locally).
 
 ## Code Overview
 Currently we have released the source code for the web interface.
